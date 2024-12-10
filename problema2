@@ -1,0 +1,33 @@
+//Fibonacci generalizado: Crea una función que reciba dos números
+//iniciales y calcule una serie similar a Fibonacci, pero con estos números
+//como punto de partida
+
+fun main() {
+    // Solicita al usuario los números iniciales y la longitud de la serie
+    println("Ingrese el primer número:")
+    val num1 = readLine()?.toIntOrNull() ?: 0
+    println("Ingrese el segundo número:")
+    val num2 = readLine()?.toIntOrNull() ?: 0
+    println("Ingrese la longitud de la serie:")
+    val length = readLine()?.toIntOrNull() ?: 10
+
+    // Genera y muestra la serie
+    val serie = generarSerieFibonacciPersonalizada(num1, num2, length)
+    println("Serie generada: $serie")
+}
+
+// Función para generar la serie personalizada
+fun generarSerieFibonacciPersonalizada(num1: Int, num2: Int, length: Int): List<Int> {
+    // Verifica que la longitud sea válida
+    if (length <= 0) return emptyList()
+
+    val serie = mutableListOf(num1, num2)
+
+    // Genera la serie sumando los dos últimos números
+    for (i in 2 until length) {
+        val siguiente = serie[i - 1] + serie[i - 2]
+        serie.add(siguiente)
+    }
+
+    return serie.take(length) // Limita a la longitud solicitada
+}
